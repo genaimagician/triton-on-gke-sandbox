@@ -12,24 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-terraform {
-  required_version = ">= 0.16"
-  required_providers {
-    google = ">= 4.15"
-  }
-
-  backend "gcs" {}
-}
-
-provider "google" {
-    project = var.project_id 
-}
-
-provider "google-beta" {
-  project = var.project_id
-}
-
-data "google_project" "project" {
-    project_id = var.project_id    
-}
+project_id = "genaimagician"
+region = "us-central1"
+prefix = "lp-gpu"
+zone="us-central1-a"
+network_name="lp-gke-network" 
+subnet_name="lp-gke-subnet"
+repository_bucket_name="lp-triton-repository"
+gke_cluster_name="lp-ft-gke"
+triton_sa_name="triton-sa"
+triton_namespace="triton"
+machine_type="n1-standard-4"
+accelerator_count=1
+accelerator_type="nvidia-tesla-t4"
+tf_state_bucket = "lp-mlops-dev-tf-state"
+tf_state_prefix = "jax-to-ft-demo"
+cloudbuild_sa = "512433420069@cloudbuild.gserviceaccount.com"
